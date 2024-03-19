@@ -17,7 +17,7 @@ Set up the plugin in your `app.json`:
   "expo": {
     "plugins": [
       [
-        "../app.plugin.js",
+        "@dylmye/config-plugin-react-native-mparticle",
         {
           "androidMparticleKey": "us1-YOUR_ANDROID_KEY_HERE",
           "androidMparticleSecret": "YOUR_ANDROID_SECRET_HERE"
