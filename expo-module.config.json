@@ -1,0 +1,10 @@
+{
+  "platforms": ["ios", "android"],
+  "ios": {
+    "modules": ["MparticlePluginModule"],
+    "appDelegateSubscribers": ["AppLifecycleDelegate"]
+  },
+  "android": {
+    "modules": ["expo.modules.mparticle.MparticlePluginModule"]
+  }
+}

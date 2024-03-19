@@ -1,0 +1,44 @@
+{
+  "name": "config-plugin-react-native-mparticle",
+  "version": "1.0.0",
+  "description": "Expo support plugin for react-native-mparticle",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "config-plugin-react-native-mparticle",
+    "MparticlePlugin",
+    "mparticle",
+    "react-native-mparticle"
+  ],
+  "repository": "https://github.com/dylmye/config-plugin-react-native-mparticle",
+  "bugs": {
+    "url": "https://github.com/dylmye/config-plugin-react-native-mparticle/issues"
+  },
+  "author": "Dylan Myers (https://github.com/dylmye)",
+  "license": "ISC",
+  "homepage": "https://github.com/dylmye/config-plugin-react-native-mparticle#readme",
+  "dependencies": {
+    "react-native-mparticle": "^2.7.10"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.4.1",
+    "expo-modules-core": "^1.11.12"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-mparticle": "^2.7.10"
+  }
+}
