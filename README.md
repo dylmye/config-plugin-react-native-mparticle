@@ -28,6 +28,24 @@ Set up the plugin in your `app.json`:
 }
 ```
 
+Here's all the possible values. They're all optional however you need both the key and secret for each platform to activate mParticle for that platform.
+
+See how to get your Android and/or iOS keys [in this help guide](https://docs.mparticle.com/developers/quickstart/android/create-input/).
+
+If you want to enforce a Data Plan, see how to grab its ID and version [in this guide](https://docs.mparticle.com/developers/quickstart/android/data-planning/).
+
+| Key                               | Value                       |
+| --------------------------------- | --------------------------- |
+| `androidMparticleKey`             | Key for Android input       |
+| `androidMparticleSecret`          | Secret for Android input    |
+| `androidMparticleDataplanId`      | Data Plan 'Plan ID'         |
+| `androidMparticleDataplanVersion` | Data Plan 'v' number        |
+| `iosMparticleKey`                 | Key for iOS input           |
+| `iosMparticleSecret`              | Secret for iOS input        |
+| `iosMparticleDataplanId`          | Data Plan 'Plan ID'         |
+| `iosMparticleDataplanVersion`     | Data Plan 'v' number        |
+
+
 > For bare React Native projects, you must ensure that you have [installed and configured the `expo` package](https://docs.expo.dev/bare/installing-expo-modules/) before continuing.
 
 ### Configure for iOS
