@@ -1,0 +1,47 @@
+name: Publish Plugin To NPM
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    name: Build and publish package
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set Node 18.x
+        uses: actions/setup-node@v4
+        node-version-file: '.nvmrc'
+        registry-url: 'https://registry.npmjs.org'
+        scope: '@dylmye'
+        cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Build package
+        run: yarn build plugin
+
+      - name: Publish to NPM
+        run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  create_release:
+    runs-on: ubuntu-latest
+    name: Create GitHub release
+    needs: build_and_publish
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true

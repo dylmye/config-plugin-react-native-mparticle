@@ -3,8 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "config-plugin-react-native-mparticle": ["../src/index"],
-      "config-plugin-react-native-mparticle/*": ["../src/*"]
+      "@dylmye/config-plugin-react-native-mparticle": ["../src/index"],
+      "@dylmye/config-plugin-react-native-mparticle/*": ["../src/*"]
     }
   }
 }

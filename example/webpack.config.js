@@ -6,7 +6,7 @@ module.exports = async (env, argv) => {
     {
       ...env,
       babel: {
-        dangerouslyAddModulePathsToTranspile: ['config-plugin-react-native-mparticle'],
+        dangerouslyAddModulePathsToTranspile: ['@dylmye/config-plugin-react-native-mparticle'],
       },
     },
     argv

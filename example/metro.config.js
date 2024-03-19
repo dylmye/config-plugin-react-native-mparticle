@@ -19,7 +19,7 @@ config.resolver.nodeModulesPaths = [
 ];
 
 config.resolver.extraNodeModules = {
-  'config-plugin-react-native-mparticle': '..',
+  '@dylmye/config-plugin-react-native-mparticle': '..',
 };
 
 config.watchFolders = [path.resolve(__dirname, '..')];
