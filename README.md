@@ -1,6 +1,6 @@
 # mParticle Expo Config Plugin
 
-> **Warning**
+> **Warning**    
 > This package is in beta and not yet confirmed working. Use at your own risk.
 
 Sets up mParticle so you can use react-native-mparticle in your Expo project.
