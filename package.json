@@ -1,6 +1,6 @@
 {
   "name": "@dylmye/config-plugin-react-native-mparticle",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Expo support plugin for react-native-mparticle",
   "main": "build/index.js",
   "types": "build/index.d.ts",
