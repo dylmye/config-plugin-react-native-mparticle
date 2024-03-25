@@ -132,7 +132,7 @@ const withPodLinkingSettings: ConfigPlugin = (config) => {
             Anchor last updated: 2024-03-25, line: 17
             Check the line below still exists here: https://github.com/expo/expo/blob/main/templates/expo-template-bare-minimum/ios/Podfile
          */
-        anchor: /\s*use_expo_modules!\(\)/i,
+        anchor: "use_expo_modules!",
         offset: 2,
         comment: "#",
       });
