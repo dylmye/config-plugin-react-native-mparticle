@@ -5,7 +5,7 @@ import {
   AndroidConfig,
   ConfigPlugin,
 } from "@expo/config-plugins";
-import generateCode from "@expo/config-plugins/build/utils/generateCode";
+import { mergeContents } from "@expo/config-plugins/build/utils/generateCode";
 import path from "path";
 import fs from "fs";
 
@@ -124,7 +124,7 @@ const withPodLinkingSettings: ConfigPlugin = (config) => {
       const filePath = path.join(cfg.modRequest.platformProjectRoot, "Podfile");
       const contents = fs.readFileSync(filePath, "utf-8");
 
-      const addCodeOperation = generateCode.mergeContents({
+      const addCodeOperation = mergeContents({
         tag: "withReactNativeMparticle",
         src: contents,
         newSrc: linkingPodfileCode,
