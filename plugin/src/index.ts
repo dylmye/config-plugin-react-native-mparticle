@@ -129,11 +129,11 @@ const withPodLinkingSettings: ConfigPlugin = (config) => {
         src: contents,
         newSrc: linkingPodfileCode,
         /*
-            Anchor last updated: 2024-03-25, line: 69
+            Anchor last updated: 2024-03-25, line: 18
             Check the line below still exists here: https://github.com/expo/expo/blob/main/templates/expo-template-bare-minimum/ios/Podfile
          */
-        anchor: "post_install do |installer|",
-        offset: -1,
+        anchor: "config = use_native_modules!",
+        offset: 2,
         comment: "#",
       });
 
