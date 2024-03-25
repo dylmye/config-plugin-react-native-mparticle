@@ -3,12 +3,12 @@ import mParticle_Apple_SDK
 
 public class AppLifecycleDelegate: ExpoAppDelegateSubscriber {
   public func applicationDidFinishLaunchingWithOptions(_ application: UIApplication) -> Bool {
-    let apiKey: String? = Bundle.main.object(forInfoDictionaryKey: "ANDROID_MPARTICLE_API_KEY")
-    let apiSecret: String? = Bundle.main.object(forInfoDictionaryKey: "ANDROID_MPARTICLE_API_SECRET")
-    let dataplanId: String? = Bundle.main.object(forInfoDictionaryKey: "ANDROID_MPARTICLE_DATAPLAN_ID")
-    let dataplanVersion: String? = Bundle.main.object(forInfoDictionaryKey: "ANDROID_MPARTICLE_DATAPLAN_VERSION")
+    let apiKey: String? = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_API_KEY")
+    let apiSecret: String? = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_API_SECRET")
+    let dataplanId: String? = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_DATAPLAN_ID")
+    let dataplanVersion: String? = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_DATAPLAN_VERSION")
 
-    if apiKey == nil || apiSecret == null {
+    if apiKey == nil || apiSecret == nil {
       return true
     }
 
