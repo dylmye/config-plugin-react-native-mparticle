@@ -62,6 +62,12 @@ Make sure to test your changes with the [example app](./example/).
 
 To create a release, bump the version number in package.json (in its own commit) then create a tag using `git tag vx.x.x` (where x.x.x is the semantic release version), then push it with `git push && git push --tags`.
 
+## Testing process
+
+0. Make changes to plugin
+0. Run `yarn plugin build` to build changes
+0. In example dir, run `yarn expo prebuild --clean`
+
 # Authors
 
 * [Dylan @dylmye](https://github.com/dylmye)

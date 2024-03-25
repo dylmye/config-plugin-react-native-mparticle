@@ -1,11 +1,15 @@
 import {
+  withDangerousMod,
   withInfoPlist,
   withAndroidManifest,
   AndroidConfig,
   ConfigPlugin,
 } from "@expo/config-plugins";
+import generateCode from "@expo/config-plugins/build/utils/generateCode";
+import path from "path";
+import fs from "fs";
 
-const withMyApiKey: ConfigPlugin<{
+interface MparticlePluginOptions {
   androidMparticleKey?: string;
   androidMparticleSecret?: string;
   androidMparticleDataplanId?: string;
@@ -14,7 +18,12 @@ const withMyApiKey: ConfigPlugin<{
   iosMparticleSecret?: string;
   iosMparticleDataplanId?: string;
   iosMparticleDataplanVersion?: number;
-}> = (
+}
+
+/**
+ * Modify configuration files to give native code access to API keys
+ */
+const withApiKeys: ConfigPlugin<MparticlePluginOptions> = (
   config,
   {
     androidMparticleKey,
@@ -91,4 +100,61 @@ const withMyApiKey: ConfigPlugin<{
   return config;
 };
 
-export default withMyApiKey;
+const linkingPodfileCode = `
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if pod.name == 'mParticle-Apple-SDK'
+      def pod.build_type;
+        Pod::BuildType.new(:linkage => :dynamic, :packaging => :framework)
+      end
+    end
+  end
+end
+`;
+
+/**
+ * Modify Podfile to add dynamic linking just for mParticle
+ *
+ * @see https://github.com/mParticle/react-native-mparticle?tab=readme-ov-file#ios
+ */
+const withPodLinkingSettings: ConfigPlugin = (config) => {
+  return withDangerousMod(config, [
+    "ios",
+    async (cfg) => {
+      const filePath = path.join(cfg.modRequest.platformProjectRoot, "Podfile");
+      const contents = fs.readFileSync(filePath, "utf-8");
+
+      const addCodeOperation = generateCode.mergeContents({
+        tag: "withReactNativeMparticle",
+        src: contents,
+        newSrc: linkingPodfileCode,
+        /*
+            Anchor last updated: 2024-03-25, line: 18
+            Check the line below still exists here: https://github.com/expo/expo/blob/main/templates/expo-template-bare-minimum/ios/Podfile
+         */
+        anchor: /\s*use_native_modules!\(\)/i,
+        offset: 2,
+        comment: "#",
+      });
+
+      if (!addCodeOperation.didMerge) {
+        throw new Error("Unable to set mParticle linking settings - please contact the plugin author with a copy of your generated Podfile: https://github.com/dylmye/config-plugin-react-native-mparticle")
+      }
+
+      fs.writeFileSync(filePath, addCodeOperation.contents);
+
+      return cfg;
+    },
+  ]);
+};
+
+/**
+ * Apply all above plugins
+ */
+const withMparticle: ConfigPlugin<MparticlePluginOptions> = (config, opts) => {
+  config = withApiKeys(config, opts);
+  config = withPodLinkingSettings(config);
+  return config;
+};
+
+export default withMparticle;
