@@ -124,6 +124,13 @@ const withPodLinkingSettings: ConfigPlugin = (config) => {
       const filePath = path.join(cfg.modRequest.platformProjectRoot, "Podfile");
       const contents = fs.readFileSync(filePath, "utf-8");
 
+      if (contents.includes("mParticle-Apple-SDK")) {
+        console.log(
+          "› mParticle linking code already included in Podfile - skipping this change, prebuild with --clean flag to re-implement."
+        );
+        return cfg;
+      }
+
       const addCodeOperation = mergeContents({
         tag: "withReactNativeMparticle",
         src: contents,
@@ -138,7 +145,9 @@ const withPodLinkingSettings: ConfigPlugin = (config) => {
       });
 
       if (!addCodeOperation.didMerge) {
-        throw new Error("Unable to set mParticle linking settings - please contact the plugin author with a copy of your generated Podfile: https://github.com/dylmye/config-plugin-react-native-mparticle")
+        throw new Error(
+          "Unable to set mParticle linking settings - please contact the plugin author with a copy of your generated Podfile: https://github.com/dylmye/config-plugin-react-native-mparticle"
+        );
       }
 
       fs.writeFileSync(filePath, addCodeOperation.contents);

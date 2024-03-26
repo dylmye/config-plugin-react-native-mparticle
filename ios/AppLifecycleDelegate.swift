@@ -2,13 +2,13 @@ import ExpoModulesCore
 import mParticle_Apple_SDK
 
 public class AppLifecycleDelegate: ExpoAppDelegateSubscriber {
-  public func applicationDidFinishLaunchingWithOptions(_ application: UIApplication) -> Bool {
+  public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     let apiKey = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_API_KEY") as? String
     let apiSecret = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_API_SECRET") as? String
     let dataplanId = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_DATAPLAN_ID") as? String
     let dataplanVersion = Bundle.main.object(forInfoDictionaryKey: "IOS_MPARTICLE_DATAPLAN_VERSION") as? NSNumber
 
-    guard 
+    guard
       let apiKey,
       let apiSecret
     else {
