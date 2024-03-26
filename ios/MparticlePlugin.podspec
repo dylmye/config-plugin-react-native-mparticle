@@ -17,7 +17,9 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
   s.dependency 'mParticle-Apple-SDK', '~> 8.12.0'
-  s.dependency 'mParticle-AppsFlyer'
+
+  # you can add a kit like so:
+  # s.dependency 'mParticle-AppsFlyer'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {

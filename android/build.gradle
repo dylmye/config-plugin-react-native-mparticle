@@ -92,5 +92,7 @@ dependencies {
 
   // mparticle
   implementation "com.mparticle:android-core:5.+"
-  implementation "com.mparticle:android-appsflyer-kit:5+"
+  
+  // you can add a kit like so:
+  // implementation "com.mparticle:android-appsflyer-kit:5+"
 }
